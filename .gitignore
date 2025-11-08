@@ -3,6 +3,9 @@
 *.gz
 *.svg
 *.pdf
+/result/
+/data/
+/ref_data/
 ##############
 # common project
 ##############
