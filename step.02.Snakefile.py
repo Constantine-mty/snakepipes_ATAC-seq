@@ -294,7 +294,7 @@ rule remove_duplicates:
         {SAMTOOLS} view -h {input} \
             | {SAMBLASTER} --removeDups \
             | {SAMTOOLS} view -Sb -F 4 - \
-            | {SAMTOOLS} sort -@ {THREAD} -T ../temp_file/{input}.tmp -o {output[0]}
+            | {SAMTOOLS} sort -@ {THREAD} -T ./result/temp/{wildcards.sample}.rmdup.tmp -o {output[0]}
         
         {SAMTOOLS} index {output[0]}
         """
@@ -440,10 +440,10 @@ rule sort_n_rmdup:
     input:
         "./result/bam/{sample}.sortp_genome_rmchrM_rmdup.bam"
     output:
-        temp("./result/bam/{sample}.sortn_genome_rmchrM_rmdup.bam")
+        "./result/bam/{sample}.sortn_genome_rmchrM_rmdup.bam"
     shell:
         """
-        {SAMTOOLS} sort -@ {THREAD} -n -T ../temp_file/{input}.tmp -o {output} {input}
+        {SAMTOOLS} sort -@ {THREAD} -n -T ./result/temp/{wildcards.sample}.sortn.tmp -o {output} {input}
         """
 rule call_peaks_genrich:
     input:
@@ -462,7 +462,7 @@ rule call_peaks_macs2:
     output: 
         "./result/peak_calling/{sample}.macs2_peaks.narrowPeak"
     params:
-        name = lambda wildcards: f'../peak_calling/{wildcards["sample"]}.macs2'
+        name = lambda wildcards: f'./result/peak_calling/{wildcards["sample"]}.macs2'
     log: 
         "./result/peak_calling/{sample}.macs2_peaks.narrowPeak.log"
     shell:

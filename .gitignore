@@ -3,6 +3,8 @@
 *.gz
 *.svg
 *.pdf
+*.out
+/tmp/
 /result/
 /data/
 /ref_data/
