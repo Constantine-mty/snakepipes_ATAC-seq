@@ -5,7 +5,7 @@
 *.pdf
 *.out
 /tmp/
-/result/
+/result*/
 /data/
 /ref_data/
 ##############

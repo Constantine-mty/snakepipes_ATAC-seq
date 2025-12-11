@@ -126,8 +126,8 @@ rule all:
 # ------------------------------------------------------------------->>>>>>>>>>
 rule fastp_trim_adaptor:
     input:
-        fwd="./data/20251108/{sample}_R1.fq.gz",
-        rev="./data/20251108/{sample}_R2.fq.gz"
+        fwd = f"./data/{PROJECT}/{{sample}}_R1.fq.gz",
+        rev = f"./data/{PROJECT}/{{sample}}_R2.fq.gz"
     output:
         fwd=temp("./result/fastq_trim_adaptor/{sample}_R1_cutadapt.fq.gz"),
         rev=temp("./result/fastq_trim_adaptor/{sample}_R2_cutadapt.fq.gz"),
